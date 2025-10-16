@@ -1,0 +1,28 @@
+{
+  "name": "product-order-telegram",
+  "version": "1.0.0",
+  "description": "Simple web application for product ordering with Telegram notifications",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "build": "echo 'No build step required'"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "nodemon": "^3.1.10"
+  },
+  "keywords": [
+    "telegram",
+    "orders",
+    "express",
+    "web-app"
+  ],
+  "author": "",
+  "license": "MIT"
+}

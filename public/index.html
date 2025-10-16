@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Order - Telegram Notifications</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🛒 Product Order System</h1>
+            <p>Select a product and we'll send your order via Telegram!</p>
+        </header>
+
+        <!-- Phone Number Input Section -->
+        <section class="phone-section">
+            <div class="input-group">
+                <label for="phoneNumber">📱 Your Phone Number</label>
+                <input 
+                    type="tel" 
+                    id="phoneNumber" 
+                    placeholder="Enter your phone number"
+                    class="phone-input"
+                >
+                <div class="error-message" id="phoneError"></div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="products-section" id="productsSection">
+            <h2>Available Products</h2>
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card" data-product-id="1">
+                    <div class="product-image">📱</div>
+                    <h3 class="product-name">Premium Smartphone</h3>
+                    <p class="product-price">$599.99</p>
+                    <p class="product-description">Latest flagship smartphone with advanced camera and long battery life</p>
+                    <button class="select-btn" disabled>Select Product</button>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card" data-product-id="2">
+                    <div class="product-image">💻</div>
+                    <h3 class="product-name">Gaming Laptop</h3>
+                    <p class="product-price">$1299.99</p>
+                    <p class="product-description">High-performance gaming laptop with RTX graphics and fast SSD</p>
+                    <button class="select-btn" disabled>Select Product</button>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card" data-product-id="3">
+                    <div class="product-image">🎧</div>
+                    <h3 class="product-name">Wireless Headphones</h3>
+                    <p class="product-price">$199.99</p>
+                    <p class="product-description">Premium noise-canceling wireless headphones with 30-hour battery</p>
+                    <button class="select-btn" disabled>Select Product</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Order Summary Section -->
+        <section class="order-summary" id="orderSummary" style="display: none;">
+            <h2>📋 Order Summary</h2>
+            <div class="summary-content">
+                <div class="summary-item">
+                    <span class="label">Product:</span>
+                    <span class="value" id="summaryProductName">-</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Price:</span>
+                    <span class="value" id="summaryPrice">-</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Quantity:</span>
+                    <span class="value" id="summaryQuantity">1</span>
+                </div>
+                <div class="summary-item total">
+                    <span class="label">Total Amount:</span>
+                    <span class="value" id="summaryTotal">-</span>
+                </div>
+            </div>
+            <div class="order-actions">
+                <button id="confirmOrder" class="confirm-btn">
+                    <span class="btn-text">Confirm Order</span>
+                    <span class="loading-spinner" style="display: none;">⏳</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Messages Section -->
+        <section class="messages" id="messages">
+            <!-- Success/Error messages will be displayed here -->
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
