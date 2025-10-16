@@ -1,6 +1,9 @@
 // Product Order System - Frontend JavaScript
 // Handles user interactions, validation, and API communication
 
+// Constant phone number - no user input required
+const PHONE_NUMBER = '1234567890';
+
 // Product data - matches the HTML structure
 const products = {
     '1': {
@@ -21,31 +24,22 @@ const products = {
 };
 
 // DOM elements
-const phoneInput = document.getElementById('phoneNumber');
-const phoneError = document.getElementById('phoneError');
-const productsSection = document.getElementById('productsSection');
 const orderSummary = document.getElementById('orderSummary');
 const confirmBtn = document.getElementById('confirmOrder');
 const messagesSection = document.getElementById('messages');
 
 // State management
 let currentOrder = null;
-let isPhoneValid = false;
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
     setupEventListeners();
-    updateProductButtons();
 });
 
 /**
  * Set up all event listeners for the application
  */
 function setupEventListeners() {
-    // Phone number input validation
-    phoneInput.addEventListener('input', handlePhoneInput);
-    phoneInput.addEventListener('blur', validatePhoneNumber);
-    
     // Product selection handlers
     const productCards = document.querySelectorAll('.product-card');
     productCards.forEach(card => {
@@ -60,110 +54,22 @@ function setupEventListeners() {
     confirmBtn.addEventListener('click', handleOrderConfirmation);
 }
 
-/**
- * Handle phone number input with real-time validation
- */
-function handlePhoneInput() {
-    const phoneValue = phoneInput.value.trim();
-    
-    // Clear previous error messages
-    phoneError.textContent = '';
-    phoneInput.classList.remove('valid', 'invalid');
-    
-    if (phoneValue.length === 0) {
-        isPhoneValid = false;
-        updateProductButtons();
-        return;
-    }
-    
-    // Real-time validation feedback
-    if (phoneValue.length >= 3) {
-        validatePhoneNumber();
-    }
-}
 
-/**
- * Validate phone number format
- * @returns {boolean} - True if phone number is valid
- */
-function validatePhoneNumber() {
-    const phoneValue = phoneInput.value.trim();
-    
-    if (!phoneValue) {
-        showPhoneError('Phone number is required');
-        return false;
-    }
-    
-    // Remove common formatting characters for validation
-    const cleanPhone = phoneValue.replace(/[\s\-\(\)]/g, '');
-    
-    // Basic phone number validation (international format)
-    const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
-    
-    if (!phoneRegex.test(cleanPhone)) {
-        showPhoneError('Please enter a valid phone number');
-        return false;
-    }
-    
-    if (cleanPhone.length < 7 || cleanPhone.length > 16) {
-        showPhoneError('Phone number must be between 7-16 digits');
-        return false;
-    }
-    
-    // Phone number is valid
-    phoneError.textContent = '';
-    phoneInput.classList.remove('invalid');
-    phoneInput.classList.add('valid');
-    isPhoneValid = true;
-    updateProductButtons();
-    
-    return true;
-}
-
-/**
- * Display phone validation error
- * @param {string} message - Error message to display
- */
-function showPhoneError(message) {
-    phoneError.textContent = message;
-    phoneInput.classList.remove('valid');
-    phoneInput.classList.add('invalid');
-    isPhoneValid = false;
-    updateProductButtons();
-}
-
-/**
- * Update product button states based on phone validation
- */
-function updateProductButtons() {
-    const selectButtons = document.querySelectorAll('.select-btn');
-    const productCards = document.querySelectorAll('.product-card');
-    
-    selectButtons.forEach((btn, index) => {
-        btn.disabled = !isPhoneValid;
-        productCards[index].classList.toggle('disabled', !isPhoneValid);
-    });
-}
 
 /**
  * Handle product selection and generate order summary
  * @param {string} productId - ID of the selected product
  */
 function handleProductSelection(productId) {
-    if (!isPhoneValid) {
-        showMessage('Please enter a valid phone number first', 'error');
-        return;
-    }
-    
     const product = products[productId];
     if (!product) {
         showMessage('Invalid product selection', 'error');
         return;
     }
     
-    // Create order data
+    // Create order data with constant phone number
     currentOrder = {
-        phoneNumber: phoneInput.value.trim(),
+        phoneNumber: PHONE_NUMBER,
         product: product,
         quantity: 1,
         totalAmount: product.price * 1
@@ -305,15 +211,6 @@ function resetOrderForm() {
     
     // Hide order summary
     orderSummary.style.display = 'none';
-    
-    // Reset phone input
-    phoneInput.value = '';
-    phoneInput.classList.remove('valid', 'invalid');
-    phoneError.textContent = '';
-    isPhoneValid = false;
-    
-    // Update product buttons
-    updateProductButtons();
     
     // Scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });

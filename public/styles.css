@@ -38,57 +38,7 @@ body {
     opacity: 0.9;
 }
 
-/* Phone Input Section */
-.phone-section {
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
-}
 
-.input-group {
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-.input-group label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: #555;
-    font-size: 1.1rem;
-}
-
-.phone-input {
-    width: 100%;
-    padding: 15px;
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-}
-
-.phone-input:focus {
-    outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-}
-
-.phone-input.valid {
-    border-color: #28a745;
-}
-
-.phone-input.invalid {
-    border-color: #dc3545;
-}
-
-.error-message {
-    color: #dc3545;
-    font-size: 0.9rem;
-    margin-top: 5px;
-    min-height: 20px;
-}
 
 /* Products Section */
 .products-section {

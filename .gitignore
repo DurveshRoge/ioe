@@ -68,7 +68,7 @@ dist
 
 # Gatsby files
 .cache/
-# public (commented out - we need our public folder)
+# public (commented out - we need our public fo
 
 # Storybook build outputs
 .out
